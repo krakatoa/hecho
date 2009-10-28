@@ -1,0 +1,6 @@
+<%- form_for @vendedor, :url => vendedores_path do |f| %>
+  <legend>Nuevo Vendedor</legend><br />
+  <%= render :partial => "form", :locals => { :f => f } %>
+  <p><%= f.submit "Submit" %></p>
+<%- end %>
+<%= link_to "Atras", vendedores_path %>

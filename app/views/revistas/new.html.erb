@@ -1,0 +1,6 @@
+<%- form_for @revista, :url => revistas_path do |f| %>
+  <legend>Nueva Revista</legend><br />
+  <%= render :partial => "form", :locals => { :f => f } %>
+  <p><%= f.submit "Submit" %></p>
+<%- end %>
+<%= link_to "Atras", revistas_path %>

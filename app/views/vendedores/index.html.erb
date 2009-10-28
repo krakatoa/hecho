@@ -1,0 +1,19 @@
+<%= link_to "Nuevo Vendedor", new_vendedor_path %>
+<%- if @vendedores.size > 0 %>
+  <table>
+    <thead>
+      <th>Credencial</th>
+      <th>Nombre y Apellido</th>
+      <th>Sexo</th>
+      <th>Edad</th>
+    </thead>
+    <% @vendedores.each do |vendedor| %>
+      <tr>
+        <td><%= vendedor.credencial %></td>
+        <td><%= link_to "#{vendedor.nombre} #{vendedor.apellido}", vendedor_path(vendedor) %></td>
+        <td><%= vendedor.sexo %></td>
+        <td><%= vendedor.edad %></td>
+      </tr>
+    <% end %>
+  </table>
+<%- end %>

@@ -1,0 +1,25 @@
+development:
+  adapter: mysql
+  database: hecho_development
+  host: localhost
+  socket: /var/run/mysqld/mysqld.sock
+  username: root
+  password: vivapappo
+  pool: 5
+  timeout: 5000
+production:
+  adapter: mysql
+  encoding: utf8
+  database: hecho_production
+  username: root
+  password: vivapappo
+  host: localhost
+  socket: /var/run/mysqld/mysqld.sock
+test:
+  adapter: mysql
+  encoding: utf8
+  database: hecho_test
+  username: root
+  password: vivapappo
+  host: localhost
+  socket: /var/run/mysqld/mysqld.sock

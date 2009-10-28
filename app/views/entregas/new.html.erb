@@ -1,0 +1,16 @@
+<%- form_for @entrega, :url => vendedor_entregas_url(@vendedor) do |f| %>
+  <%- if f.error_messages.size > 0 %>
+    <div class="error"><%= f.error_messages %></div>
+  <%- end %>
+  <%- fields_for @entrega.revista do |revista| %>
+    Revista Numero: <%= revista.text_field :numero %><br />
+  <%- end %>
+  <%- if @entrega.promociones.size > 0 %>
+    +<%= @entrega.cantidad_gratis %>
+    <strong>(<%= mostrar_promociones(@entrega) %>)</strong>
+    <br />
+  <%- end %>
+  Cantidad: <%= f.text_field :cantidad_pagas %><br />
+  Pago: <%= f.text_field :pago %><br />
+  <%= f.submit %>
+<%- end %>

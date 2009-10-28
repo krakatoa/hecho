@@ -1,0 +1,46 @@
+<%= link_to "Nueva compra", new_vendedor_entrega_path %>
+<%- if @compras.size > 0 %>
+  <table>
+    <thead>
+      <th>Nro.</th>
+      <th>Mes/Ano</th>
+      <th>Cantidad</th>
+      <th>Pago</th>
+      <th>Debe</th>
+    </thead>
+    <%- @compras.each do |compra| %>
+      <tr>
+        <td><%= compra.revista.numero %></td>
+        <td><%= compra.revista.mes %>/<%= compra.revista.ano %></td>
+        <td><%= compra.cantidad %> <%= "(#{compra.cantidad_gratis} x promo)" if compra.promociones.size > 0 %></td>
+        <td><%= compra.pago %></td>
+        <%- if compra.saldo_vendedor < 0 %>
+          <td class="deuda">
+            <%= - compra.saldo_vendedor %>
+          </td>
+        <%- else %>
+          <td></td>
+        <%- end %>
+        <td>
+          <%- if compra.promociones.size > 0 %>
+            <strong>Promo: <%= mostrar_promociones(compra) %></strong>
+          <%- end %>
+        </td>
+      </tr>
+    <%- end %>
+    <tr class="total">
+      <td>Total</td>
+      <td></td>
+      <td><%= @cantidad_total_compras %></td>
+      <td></td>
+      <%- if @saldo < 0 %>
+        <td class="deuda">
+          <%= - @saldo %>
+        </td>
+      <%- else %>
+        <td></td>
+      <%- end %>
+    </tr>
+  </table>
+<%- end %>
+<%= link_to "Vendedores", vendedores_path %>

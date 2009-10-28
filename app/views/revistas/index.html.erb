@@ -1,0 +1,21 @@
+<%= link_to "Nueva Revista", new_revista_path %>
+<%- if @revistas.size > 0 %>
+  <table>
+    <thead>
+      <th>Numero</th>
+      <th>Mes</th>
+      <th>Ano</th>
+      <th>Valor</th>
+      <th>Stock</th>
+    </thead>
+    <% @revistas.each do |revista| %>
+      <tr>
+        <td><%= link_to revista.numero, edit_revista_path(revista) %></td>
+        <td><%= revista.mes %></td>
+        <td><%= revista.ano %></td>
+        <td><%= revista.valor %></td>
+        <td><%= revista.stock %></td>
+      </tr>
+    <% end %>
+  </table>
+<%- end %>

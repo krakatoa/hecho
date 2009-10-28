@@ -1,0 +1,12 @@
+<%- if f.error_messages.size > 0 %>
+  <div class="error"><%= f.error_messages %></div>
+<%- end %>
+<label>Credencial</label> <%= f.text_field :credencial %><br />
+<label>Nombre</label> <%= f.text_field :nombre %><br />
+<label>Apellido</label> <%= f.text_field :apellido %><br />
+<label>Sexo</label> <%= f.select :sexo, Vendedor.sexos, :prompt => "- Elegir -" %><br />
+<label>Fecha de Nacimiento</label> <%= f.date_select :fecha_nacimiento, :start_year => Time.now.year - 60, :end_year => Time.now.year - 10, :prompt => [] %><br />
+<label>Pais</label> <%= f.select :pais_id, coleccion_paises, :prompt => "- Seleccionar -" %><br />
+<label>Provincia</label> <%= f.select :provincia_id, coleccion_provincias, :prompt => "- Seleccionar -" %><br />
+<label>Persona del equipo que realizo la inscripcion</label> <%= f.text_field :personal_inscripcion %><br />
+<label>Fecha Inscripcion</label> <%= f.date_select :fecha_inscripcion %><br />

@@ -1,0 +1,16 @@
+<%- if @promociones.size > 0 %>
+  <table>
+    <thead>
+      <th>Nombre</th>
+      <th>Activa</th>
+      <th>Cantidad</th>
+    </thead>
+    <% @promociones.each do |promocion| %>
+      <tr>
+        <td><%= promocion.nombre %></td>
+        <td><%= promocion.activa ? "Si" : link_to("activar", activar_promocion_path(promocion)) %></td>
+        <td><%= promocion.cantidad %></td>
+      </tr>
+    <% end %>
+  </table>
+<%- end %>
