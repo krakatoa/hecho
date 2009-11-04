@@ -1,0 +1,14 @@
+<%- form_for @encuesta, :url => vendedor_encuestas_path(@vendedor) do |f| %>
+  <legend>Ficha de Inscripcion para vendedor nro: <%= @vendedor.credencial %></legend><br />
+  <%- Pregunta.all.each do |pregunta| %>
+    <strong><%= pregunta.titulo %></strong><br />
+    <%- fields_for "encuesta[items][#{pregunta.id}]" do |r| %>
+      <%= r.select(:respuesta, pregunta.respuestas.to_a.collect{|respuesta| [respuesta[1], respuesta[0].to_i]}) if pregunta.respuestas %><br />
+      <%- if pregunta.con_comentario? %>
+        Comentario: <%= r.text_field :comentario  %><br />
+      <%- end %>
+    <%- end %>
+  <%- end %>
+  <p><%= f.submit "Submit" %></p>
+<%- end %>
+<%= link_to "Atras", vendedores_path %>

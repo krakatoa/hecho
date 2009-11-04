@@ -1,0 +1,12 @@
+<%- if @vendedor.encuestas.size > 0 %>
+  <%- @vendedor.encuestas.last.items.each do |item| %>
+    <strong><%= item.pregunta.titulo %></strong><br />
+    <%= item.pregunta.respuestas.to_hash[item.respuesta.to_i] if item.pregunta.respuestas %>
+    <%- if item.pregunta.con_comentario? %>
+      <br /><%= item.comentario %>
+    <%- else %>
+      <br />
+    <%- end %>
+    <br />
+  <%- end %>
+<%- end %>

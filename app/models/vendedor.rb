@@ -1,5 +1,6 @@
 class Vendedor < ActiveRecord::Base
   has_many :compras, :class_name => "Entrega", :order => "created_at ASC"
+  has_many :encuestas, :order => "created_at ASC"
   belongs_to :pais
   belongs_to :provincia
 

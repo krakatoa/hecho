@@ -11,7 +11,7 @@ class VendedoresController < ApplicationController
     @vendedor = Vendedor.new(params[:vendedor])
 
     if @vendedor.save
-      redirect_to vendedores_url
+      redirect_to new_vendedor_encuesta_url(@vendedor)
     else
       render :action => "new"
     end

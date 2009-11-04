@@ -8,6 +8,8 @@ class CreateVendedores < ActiveRecord::Migration
       t.string  :sexo, :null => false
       t.integer :pais_id, :null => false
       t.integer :provincia_id
+      t.string :telefono, :default => nil
+      t.string :direccion, :default => nil
       t.string :personal_inscripcion, :null => false, :default => nil
       t.date :fecha_inscripcion, :null => false, :default => nil
 

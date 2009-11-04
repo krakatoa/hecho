@@ -94,3 +94,32 @@ InicialesPromocion.create!(:nombre => "10 iniciales", :activa => true)
 #                :revista => Revista.ultimo_ejemplar,
 #                :cantidad_pagas => 5,
 #                :pago => 1)
+
+Pregunta.create!( :titulo => "Como te enteraste de la existencia de HBA?",
+                  :respuestas => { 0 => "Otro vendedor/en la calle/alguien te conto",
+                                  1 => "Por una Organizacion para sin techo",
+                                  2 => "Por diario/TV/radio",
+                                  3 => "En algun comedor comunitario",
+                                  4 => "Otro" } )
+Pregunta.create!( :titulo => "Estas en la calle?",
+                  :respuestas => { 0 => "Si",
+                                  1 => "No" } )
+Pregunta.create!( :titulo => "Hace cuanto tiempo que estas en la calle?",
+                  :respuestas => {  0 => "Semanas",
+                                    1 => "Meses",
+                                    2 => "Anos" } )
+Pregunta.create!( :titulo => "Donde estas viviendo ahora?",
+                  :respuestas => {  0 => "En la calle",
+                                    1 => "Pension/Hotel",
+                                    2 => "Casa de amigos",
+                                    3 => "Hogar",
+                                    4 => "Casa ocupada",
+                                    5 => "Otra" })
+Pregunta.create!( :titulo => "Tenes alguna necesidad urgente?",
+                  :respuestas => {  0 => "Problemas legales",
+                                    1 => "Problemas de salud",
+                                    2 => "Necesidad de apoyo terapeutico",
+                                    3 => "Problemas de documentacion" },
+                  :con_comentario => true )
+Pregunta.create!( :titulo => "Taller que realizo/realiza/realizaria si estuviera?",
+                  :con_comentario => true )
