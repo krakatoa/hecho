@@ -16,7 +16,6 @@ class EncuestasController < ApplicationController
       respuesta.pregunta_id = key.to_i
       @encuesta.items << respuesta
     }
-    @encuesta.save!
 
     if @encuesta.save
       redirect_to vendedor_url(@vendedor)
