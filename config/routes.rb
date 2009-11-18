@@ -17,11 +17,12 @@ ActionController::Routing::Routes.draw do |map|
 
   # Sample resource route with sub-resources:
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  map.resources :vendedores, :has_many => [ :entregas, :encuestas ]
+  map.resources :vendedores, :has_many => [ :entregas, :encuestas, :uso_servicios ]
   #map.resources :entregas, :has_many => [ : ]
   map.resources :revistas
-  map.resources :uso_servicios
+  #map.resources :uso_servicios
   map.resources :promociones, :member => { :activar => :get }
+  map.resources :servicios
   
   # Sample resource route with more complex sub-resources
   #   map.resources :products do |products|

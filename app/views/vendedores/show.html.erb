@@ -1,3 +1,4 @@
+<%= image_tag(@vendedor.foto_path, :width => "300") if @vendedor.foto_path %>
 <%= @vendedor.credencial %><br />
 <%= "#{@vendedor.nombre} #{@vendedor.apellido}" %> (<%= @vendedor.edad %>)<br />
 <%= @vendedor.sexo %><br />
@@ -6,5 +7,6 @@
 <%= @vendedor.fecha_inscripcion %><br />
 <%= link_to "Nueva compra", new_vendedor_entrega_path(@vendedor) %>
 <%= link_to "Compras", vendedor_entregas_path(@vendedor) %>
+<%= link_to "Servicios Sociales", vendedor_uso_servicios_path(@vendedor) %>
 <br />
 <%= render :partial => "encuesta" %>

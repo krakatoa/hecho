@@ -5,7 +5,7 @@ class CreateUsoServicios < ActiveRecord::Migration
       t.integer :servicio_id, :default => nil
       t.integer :vendedor_id, :null => false
       t.date :fecha, :null => false
-      t.text :comentarios
+      t.text :comentario
 
       t.timestamps
     end

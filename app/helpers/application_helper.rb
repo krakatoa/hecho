@@ -7,4 +7,8 @@ module ApplicationHelper
   def coleccion_provincias
     Provincia.all.collect { |provincia| [provincia.nombre, provincia.id] }
   end
+
+  def coleccion_rubros
+    Rubro.all.collect { |rubro| [rubro.nombre, rubro.id] }
+  end
 end

@@ -1,0 +1,19 @@
+<%= link_to "Registrar uso de Servicios Sociales", new_vendedor_uso_servicio_path(@vendedor) %>
+<%- if @usos_servicios.size > 0 %>
+  <table>
+    <thead>
+      <th>Rubro</th>
+      <th>Servicio</th>
+      <th>Fecha</th>
+      <th>Comentario</th>
+    </thead>
+    <% @usos_servicios.each do |uso_servicio| %>
+      <tr>
+        <td><%= uso_servicio.rubro.nombre %></td>
+        <td><%= uso_servicio.servicio.nombre if uso_servicio.servicio%></td>
+        <td><%= uso_servicio.fecha %></td>
+        <td><%= uso_servicio.comentario %></td>
+      </tr>
+    <% end %>
+  </table>
+<%- end %>

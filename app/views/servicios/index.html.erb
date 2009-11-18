@@ -1,0 +1,11 @@
+<%- if @rubros.size > 0 %>
+  <%- @rubros.each do |rubro| %>
+    <strong><%= rubro.nombre %></strong><br />
+    <%- if rubro.servicios %>
+      <%- rubro.servicios.each do |servicio| %>
+        <%= servicio.nombre %><br />
+      <%- end %>
+    <%- end %>
+    <br />
+  <%- end %>
+<%- end %>
