@@ -1,6 +1,6 @@
 <%= link_to "Nueva Revista", new_revista_path %>
 <%- if @revistas.size > 0 %>
-  <table>
+  <table id="revistas">
     <thead>
       <th>Numero</th>
       <th>Mes</th>
@@ -9,12 +9,13 @@
       <th>Stock</th>
     </thead>
     <% @revistas.each do |revista| %>
-      <tr>
-        <td><%= link_to revista.numero, edit_revista_path(revista) %></td>
+      <tr value="<%= revista.id %>">
+        <td><%= revista.numero %></td>
         <td><%= revista.mes %></td>
         <td><%= revista.ano %></td>
         <td><%= revista.valor %></td>
-        <td><%= revista.stock %></td>
+        <td class="stock"><%= revista.stock %></td>
+        <td><%= link_to_function "sumar stock", :onclick => "popup_sumar_stock(#{revista.id})" %></td>
       </tr>
     <% end %>
   </table>
