@@ -2,9 +2,7 @@
   <%- if f.error_messages.size > 0 %>
     <div class="error"><%= f.error_messages %></div>
   <%- end %>
-  <%- fields_for @entrega.revista do |revista| %>
-    Revista Numero: <%= revista.text_field :numero %><br />
-  <%- end %>
+  Revista numero: <%= f.select :revista_id, coleccion_revistas %><br />
   <%- if @entrega.promociones.size > 0 %>
     +<%= @entrega.cantidad_gratis %>
     <strong>(<%= mostrar_promociones(@entrega) %>)</strong>

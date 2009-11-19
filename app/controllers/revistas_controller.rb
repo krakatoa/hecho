@@ -1,6 +1,6 @@
 class RevistasController < ApplicationController
   def index
-    @revistas = Revista.all
+    @revistas = Revista.all(:order => "numero DESC")
   end
 
   def new

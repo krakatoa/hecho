@@ -23,7 +23,6 @@ class EntregasController < ApplicationController
     end
     @entrega = Entrega.new(params[:entrega])
     @entrega.vendedor = @vendedor
-    @entrega.revista = Revista.find_by_numero(params[:revista][:numero])
 
     if @entrega.save
       redirect_to vendedor_entregas_url(@vendedor)

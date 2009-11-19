@@ -11,4 +11,8 @@ module ApplicationHelper
   def coleccion_rubros
     Rubro.all.collect { |rubro| [rubro.nombre, rubro.id] }
   end
+
+  def coleccion_revistas
+    Revista.all(:order => "numero DESC").collect { |revista| [revista.numero, revista.id] }
+  end
 end
