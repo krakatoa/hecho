@@ -2,7 +2,16 @@ class UsoServiciosController < ApplicationController
   before_filter :get_vendedor
 
   def index
-    @usos_servicios = @vendedor.uso_servicios
+    if request.post?
+      @vendedor = Vendedor.find_by_credencial(params["vendedor"]["credencial"])
+      redirect_to new_vendedor_uso_servicio_url(@vendedor)
+    else
+      if @vendedor
+        @usos_servicios = @vendedor.uso_servicios
+      else
+        render :template => "uso_servicios/servicios_sociales"
+      end
+    end
   end
 
   def new
@@ -30,6 +39,9 @@ class UsoServiciosController < ApplicationController
 
   private
     def get_vendedor
-      @vendedor = Vendedor.find(params[:vendedor_id])
+      begin
+        @vendedor = Vendedor.find(params[:vendedor_id])
+      rescue
+      end
     end
 end

@@ -1,4 +1,3 @@
-<%= link_to "Nueva compra", new_vendedor_entrega_path %>
 <%- if @compras.size > 0 %>
   <table>
     <thead>
@@ -42,4 +41,7 @@
       <%- end %>
     </tr>
   </table>
+<%- else %>
+  El vendedor todavia no realizo una compra.<br />
 <%- end %>
+<%= link_to "Distribucion", distribucion_url %>

@@ -1,0 +1,5 @@
+Credencial del vendedor:
+<%- form_for :vendedor, :url => servicios_sociales_url, :html => { :method => "post" } do |f| %>
+  <%= f.text_field :credencial %>
+  <%= f.submit "Buscar" %>
+<%- end %>

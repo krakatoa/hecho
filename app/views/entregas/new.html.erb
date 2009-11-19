@@ -1,3 +1,4 @@
+<h2><%= "#{@vendedor.nombre} #{@vendedor.apellido}" %></h2>
 <%- form_for @entrega, :url => vendedor_entregas_url(@vendedor) do |f| %>
   <%- if f.error_messages.size > 0 %>
     <div class="error"><%= f.error_messages %></div>
@@ -10,5 +11,5 @@
   <%- end %>
   Cantidad: <%= f.text_field :cantidad_pagas %><br />
   Pago: <%= f.text_field :pago %><br />
-  <%= f.submit %>
+  <%= f.submit "Registrar venta" %>
 <%- end %>

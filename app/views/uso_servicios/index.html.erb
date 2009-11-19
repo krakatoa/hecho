@@ -1,4 +1,3 @@
-<%= link_to "Registrar uso de Servicios Sociales", new_vendedor_uso_servicio_path(@vendedor) %>
 <%- if @usos_servicios.size > 0 %>
   <table>
     <thead>
@@ -16,4 +15,7 @@
       </tr>
     <% end %>
   </table>
+<%- else %>
+  El vendedor no registra uso de servicios.<br />
 <%- end %>
+<%= link_to "Servicios Sociales", servicios_sociales_url %>

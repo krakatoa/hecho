@@ -2,12 +2,21 @@ class EntregasController < ApplicationController
   before_filter :get_vendedor
 
   def index
-    @compras = @vendedor.compras
-    @cantidad_total_compras = 0
-    @saldo = 0
-    @compras.each do |compra|
-      @cantidad_total_compras += compra.cantidad
-      @saldo += compra.saldo_vendedor
+    if request.post?
+      @vendedor = Vendedor.find_by_credencial(params["vendedor"]["credencial"])
+      redirect_to new_vendedor_entrega_url(@vendedor)
+    else
+      if @vendedor
+        @compras = @vendedor.compras
+        @cantidad_total_compras = 0
+        @saldo = 0
+        @compras.each do |compra|
+          @cantidad_total_compras += compra.cantidad
+          @saldo += compra.saldo_vendedor
+        end
+      else
+        render :template => "entregas/distribucion"
+      end
     end
   end
 
@@ -37,6 +46,9 @@ class EntregasController < ApplicationController
 
   private
     def get_vendedor
-      @vendedor = Vendedor.find(params[:vendedor_id])
+      begin
+        @vendedor = Vendedor.find(params[:vendedor_id])
+      rescue
+      end
     end
 end
