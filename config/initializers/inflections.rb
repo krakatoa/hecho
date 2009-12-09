@@ -13,4 +13,5 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'inscripcion', 'inscripciones'
   inflect.irregular 'promocion', 'promociones'
   inflect.irregular 'pais', 'paises'
+  inflect.irregular 'control_stock', 'controles_stock'
 end

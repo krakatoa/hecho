@@ -28,6 +28,7 @@ ActionController::Routing::Routes.draw do |map|
                                          }
   map.resources :servicios
   map.servicios_sociales "/servicios-sociales", :controller => "uso_servicios", :action => "index"
+  map.resources :controles_stock
   
   # Sample resource route with more complex sub-resources
   #   map.resources :products do |products|
