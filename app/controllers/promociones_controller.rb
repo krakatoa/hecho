@@ -34,4 +34,11 @@ class PromocionesController < ApplicationController
     promocion.desactivar
     redirect_to promociones_path
   end
+
+  def sumar_cantidad
+    cantidad = params["cantidad"].to_i
+    @promocion = Promocion.find(params[:id])
+    @promocion.sumar_cantidad(cantidad)
+    render :text => @promocion.cantidad
+  end
 end

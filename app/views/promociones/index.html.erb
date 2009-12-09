@@ -1,15 +1,16 @@
 <%- if @promociones.size > 0 %>
-  <table>
+  <table id="promociones">
     <thead>
       <th>Nombre</th>
       <th>Activa</th>
       <th>Cantidad</th>
     </thead>
     <% @promociones.each do |promocion| %>
-      <tr>
+      <tr value="<%= promocion.id %>">
         <td><%= promocion.nombre %></td>
         <td><%= promocion.activa ? (promocion.desactivable ? link_to("desactivar", desactivar_promocion_path(promocion)) : "activa" ) : link_to("activar", activar_promocion_path(promocion)) %></td>
-        <td><%= promocion.cantidad %></td>
+        <td class="cantidad"><%= promocion.cantidad %></td>
+        <td><%= link_to_function("agregar", :onclick => "popup_agregar_promo(#{promocion.id})") if promocion.cantidad_variable? %></td>
       </tr>
     <% end %>
   </table>

@@ -12,4 +12,9 @@ class Promocion < ActiveRecord::Base
   def desactivar
     return false
   end
+
+  def sumar_cantidad(cantidad)
+    self.cantidad += cantidad
+    self.save
+  end
 end

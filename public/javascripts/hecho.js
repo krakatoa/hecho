@@ -37,3 +37,25 @@ function popup_sumar_stock(revista) {
     };
   }
 }
+
+function popup_agregar_promo(promocion) {
+  var valor = prompt('Cantidad de promociones a sumar');
+  if (!isNaN(valor) && valor != null) {
+    if (typeof(AUTH_TOKEN) == "undefined") return;
+    $.ajax({
+      type: "POST",
+      url: "/promociones/" + promocion + "/sumar_cantidad",
+      data: "authenticity_token=" + encodeURIComponent(AUTH_TOKEN)+"&cantidad="+valor,
+      dataType: "script",
+      async: false,
+      success: function fn(result) {
+        $("table#promociones tr[value='" + promocion + "'] td.cantidad").html(result);
+        return false;
+      }
+    });
+  } else {
+    if (valor != null) {
+      alert("'" + valor + "' no es un numero valido.");
+    };
+  }
+}
