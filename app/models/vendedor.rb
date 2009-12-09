@@ -33,6 +33,10 @@ class Vendedor < ActiveRecord::Base
     return saldo
   end
 
+  def total_vendidas
+    self.compras.inject(0) {|ventas, c| ventas = ventas + c.cantidad}
+  end
+
   def nacionalidad
     nacionalidad = ""
     nacionalidad += "#{provincia.nombre}, " if provincia

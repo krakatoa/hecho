@@ -1,10 +1,12 @@
 <%= image_tag(@vendedor.foto_path, :width => "100", :height => "100") if @vendedor.foto_path %>
 <label>Credencial:</label> <%= @vendedor.credencial %><br />
-<label>Nombre y Apellido: </label><%= "#{@vendedor.nombre} #{@vendedor.apellido}" %> (<%= @vendedor.edad %>)<br />
+<label>Nombre y Apellido: </label><%= "#{@vendedor.nombre} #{@vendedor.apellido}" %> (<%= @vendedor.edad %> anios)<br />
 <label>Sexo: </label><%= @vendedor.sexo %><br />
 <label>Nacionalidad: </label><%= mostrar_provincia_pais(@vendedor)%><br />
 <label>Persona del equipo que realizo la inscripcion: </label><%= @vendedor.personal_inscripcion %><br />
 <label>Fecha de Inscripcion: </label><%= @vendedor.fecha_inscripcion %><br />
+<br />
+<label>Total Revistas Vendidas: </label><%= @vendedor.total_vendidas %><br />
 <%= link_to "Compras", vendedor_entregas_path(@vendedor) %>
 <%= link_to "Servicios Sociales", vendedor_uso_servicios_path(@vendedor) %>
 <br />
