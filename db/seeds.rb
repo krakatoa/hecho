@@ -1,5 +1,5 @@
-Revista.create!(:mes => 9, :ano => 2009, :numero => 15, :valor => 0.9)
-Revista.create!(:mes => 10, :ano => 2009, :numero => 16)
+Revista.create!(:mes => 9, :ano => 2009, :numero => 15, :valor => 0.9, :stock => 500)
+Revista.create!(:mes => 10, :ano => 2009, :numero => 16, :stock => 1000)
 
 rubros = []
 rubros << Rubro.create!(:nombre => "Participacion en talleres propios")
@@ -75,9 +75,9 @@ Vendedor.create!( :credencial => 522,
                   :personal_inscripcion => "Pepe Pompin",
                   :fecha_inscripcion => Time.now)
 
-CincuentaPorCientoPromocion.create!(:nombre => "50%")
-CincoPrimerasPromocion.create!(:nombre => "5 primeras")
-DosPorUnaPromocion.create!(:nombre => "2x1")
+CincuentaPorCientoPromocion.create!(:nombre => "50%", :desactivable => true)
+CincoPrimerasPromocion.create!(:nombre => "5 primeras", :desactivable => true, :cantidad_variable => true)
+DosPorUnaPromocion.create!(:nombre => "2x1", :desactivable => true)
 #PackPromocion.create!(:nombre => "Pack")
 CumpleanosPromocion.create!(:nombre => "Cumpleanos", :activa => true)
 InicialesPromocion.create!(:nombre => "10 iniciales", :activa => true)
@@ -100,7 +100,8 @@ Pregunta.create!( :titulo => "Como te enteraste de la existencia de HBA?",
                                   1 => "Por una Organizacion para sin techo",
                                   2 => "Por diario/TV/radio",
                                   3 => "En algun comedor comunitario",
-                                  4 => "Otro" } )
+                                  4 => "Otro" },
+                  :con_comentario => true )
 Pregunta.create!( :titulo => "Estas en la calle?",
                   :respuestas => { 0 => "Si",
                                   1 => "No" } )
@@ -114,12 +115,14 @@ Pregunta.create!( :titulo => "Donde estas viviendo ahora?",
                                     2 => "Casa de amigos",
                                     3 => "Hogar",
                                     4 => "Casa ocupada",
-                                    5 => "Otra" })
+                                    5 => "Otra" },
+                  :con_comentario => true )
 Pregunta.create!( :titulo => "Tenes alguna necesidad urgente?",
                   :respuestas => {  0 => "Problemas legales",
                                     1 => "Problemas de salud",
                                     2 => "Necesidad de apoyo terapeutico",
-                                    3 => "Problemas de documentacion" },
+                                    3 => "Problemas de documentacion",
+                                    4 => "Otra"},
                   :con_comentario => true )
 Pregunta.create!( :titulo => "Taller que realizo/realiza/realizaria si estuviera?",
                   :con_comentario => true )

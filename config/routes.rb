@@ -22,7 +22,7 @@ ActionController::Routing::Routes.draw do |map|
   #map.resources :entregas, :has_many => [ : ]
   map.resources :revistas, :member => { :sumar_stock => :post }
   #map.resources :uso_servicios
-  map.resources :promociones, :member => { :activar => :get }
+  map.resources :promociones, :member => { :activar => :get, :desactivar => :get }
   map.resources :servicios
   map.servicios_sociales "/servicios-sociales", :controller => "uso_servicios", :action => "index"
   

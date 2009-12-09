@@ -16,6 +16,16 @@ class CincoPrimerasPromocion < Promocion
     end
   end
 
+  def desactivar
+    if self.activa == true
+      self.activa = false
+      self.cantidad = 0
+      return self.save
+    else
+      return false
+    end
+  end
+
   def restar_una
     if self.cantidad > 0
       self.cantidad -= 1

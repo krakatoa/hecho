@@ -8,4 +8,8 @@ class Promocion < ActiveRecord::Base
   def activar
     return false
   end
+
+  def desactivar
+    return false
+  end
 end

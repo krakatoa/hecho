@@ -8,7 +8,7 @@
     <% @promociones.each do |promocion| %>
       <tr>
         <td><%= promocion.nombre %></td>
-        <td><%= promocion.activa ? "Si" : link_to("activar", activar_promocion_path(promocion)) %></td>
+        <td><%= promocion.activa ? (promocion.desactivable ? link_to("desactivar", desactivar_promocion_path(promocion)) : "activa" ) : link_to("activar", activar_promocion_path(promocion)) %></td>
         <td><%= promocion.cantidad %></td>
       </tr>
     <% end %>

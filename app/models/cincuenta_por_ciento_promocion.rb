@@ -8,6 +8,15 @@ class CincuentaPorCientoPromocion < Promocion
     end
   end
 
+  def desactivar
+    if self.activa == true
+      self.activa = false
+      return self.save
+    else
+      return false
+    end
+  end
+
   def calculo(entrega)
     entrega.cantidad_pagas / 2
   end

@@ -28,4 +28,10 @@ class PromocionesController < ApplicationController
     promocion.activar
     redirect_to promociones_path
   end
+
+  def desactivar
+    promocion = Promocion.find(params[:id])
+    promocion.desactivar
+    redirect_to promociones_path
+  end
 end
