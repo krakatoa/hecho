@@ -3,6 +3,7 @@
   <%- if f.error_messages.size > 0 %>
     <div class="error"><%= f.error_messages %></div>
   <%- end %>
+  <%= hidden_field_tag(:costo) %>
   Revista numero: <%= f.select :revista_id, coleccion_revistas %><br />
   <%- if @entrega.promociones.size > 0 %>
     +<%= @entrega.cantidad_gratis %>

@@ -10,7 +10,7 @@ class RevistasController < ApplicationController
   def create
     @revista = Revista.new(params[:revista])
 
-    if @revista.save!
+    if @revista.save
       redirect_to revistas_path
     else
       render :action => "new"
@@ -46,5 +46,12 @@ class RevistasController < ApplicationController
     @revista.sumar_stock(cantidad)
     #render :nothing => true
     render :text => @revista.stock
+  end
+
+  def costo
+    cantidad = params["cantidad"].to_i
+    @revista = Revista.find(params[:id])
+    #render :json => {:costo => Revista.costo * cantidad}.to_json
+    render :text => (@revista.valor * cantidad).to_s
   end
 end

@@ -1,11 +1,11 @@
 $(document).ready(function() {
-  bind_links();
+  bind_triggers();
 });
 
-function bind_links() {
-  $("#uso_servicio_rubro_id").unbind("click");
-  $("#uso_servicio_rubro_id").change(function() {
-    var rubro_elegido = $("#uso_servicio_rubro_id").attr("value");
+function bind_triggers() {
+  $("form#new_uso_servicio select#uso_servicio_rubro_id").unbind("change");
+  $("form#new_uso_servicio select#uso_servicio_rubro_id").change(function() {
+    var rubro_elegido = $(this).attr("value");
     var servicios = variable[rubro_elegido];
     $("#uso_servicio_servicio_id option").remove();
     if (servicios.length > 0) {
@@ -13,6 +13,20 @@ function bind_links() {
         $("#uso_servicio_servicio_id").append("<option value=\"" + servicios[i][0] + "\">" + servicios[i][1] + "</option>");
       }
     }
+  });
+
+  $("form#new_entrega select#entrega_revista_id").unbind("change");
+  $("form#new_entrega select#entrega_revista_id").change(function() {
+    var revista = $(this).attr("value");
+    var cantidad = parseInt($("input#entrega_cantidad_pagas").attr("value"));
+    valor_pago(revista, cantidad);
+  });
+
+  $("form#new_entrega input#entrega_cantidad_pagas").unbind("change");
+  $("form#new_entrega input#entrega_cantidad_pagas").change(function() {
+    var revista = $("select#entrega_revista_id").attr("value");
+    var cantidad = parseInt($(this).attr("value"));
+    valor_pago(revista, cantidad);
   });
 }
 
@@ -58,4 +72,22 @@ function popup_agregar_promo(promocion) {
       alert("'" + valor + "' no es un numero valido.");
     };
   }
+}
+
+function valor_pago(revista, cantidad) {
+  //var revista = $(this).attr("value");
+  //var cantidad = parseInt($("input#entrega_cantidad_pagas").attr("value"));
+
+  if (typeof(AUTH_TOKEN) == "undefined") return;
+  $.ajax({
+    type: "GET",
+    url: "/revistas/" + revista + "/costo",
+    data: "authenticity_token=" + encodeURIComponent(AUTH_TOKEN)+"&cantidad="+cantidad,
+    dataType: "script",
+    async: false,
+    success: function fn(result) {
+      $("#entrega_pago").attr("value", result);
+      return false;
+    }
+  });
 }
