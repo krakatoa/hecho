@@ -11,9 +11,16 @@ class EncuestasController < ApplicationController
   def create
     @encuesta = Encuesta.create!(:vendedor => @vendedor)
     params[:encuesta][:items].each_pair { |key, respuesta_params|
+      pregunta = Pregunta.find(key.to_i)
+      if pregunta.multiple?
+        respuesta_params = {:respuesta => respuesta_params}
+        #puts respuesta_params.inspect
+        #new_hash = {}
+      end
       respuesta = Respuesta.new(respuesta_params)
       respuesta.encuesta_id = @encuesta.id
-      respuesta.pregunta_id = key.to_i
+      respuesta.pregunta = pregunta
+
       @encuesta.items << respuesta
     }
 

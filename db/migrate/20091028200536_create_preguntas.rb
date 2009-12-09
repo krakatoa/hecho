@@ -4,6 +4,7 @@ class CreatePreguntas < ActiveRecord::Migration
       t.string  :titulo
       t.text    :respuestas
       t.boolean :con_comentario, :default => false
+      t.boolean :multiple, :default => false
 
       t.timestamps
     end

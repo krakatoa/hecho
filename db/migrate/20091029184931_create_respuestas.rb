@@ -3,7 +3,7 @@ class CreateRespuestas < ActiveRecord::Migration
     create_table :respuestas do |t|
       t.integer :encuesta_id, :null => false, :default => nil
       t.integer :pregunta_id, :null => false, :default => nil
-      t.integer :respuesta, :default => nil
+      t.text :respuesta, :default => nil
       t.string  :comentario, :default => nil
 
       t.timestamps

@@ -1,7 +1,13 @@
 <%- if @vendedor.encuestas.size > 0 %>
   <%- @vendedor.encuestas.last.items.each do |item| %>
     <strong><%= item.pregunta.titulo %></strong><br />
-    <%= item.pregunta.respuestas.to_hash[item.respuesta.to_i] if item.pregunta.respuestas %>
+    <%- unless item.pregunta.multiple? %>
+      <%= item.pregunta.respuestas.to_hash[item.respuesta.to_i] if item.pregunta.respuestas %>
+    <%- else %>
+      <%- item.pregunta.respuestas.each do |respuesta| %>
+        <label><%= respuesta[1] %></label> <%= item.respuesta[respuesta[0].to_s] %><br />
+      <%- end %>
+    <%- end %>
     <%- if item.pregunta.con_comentario? %>
       <br /><%= item.comentario %>
     <%- else %>

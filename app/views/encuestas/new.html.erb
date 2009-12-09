@@ -3,7 +3,13 @@
   <%- Pregunta.all.each do |pregunta| %>
     <strong><%= pregunta.titulo %></strong><br />
     <%- fields_for "encuesta[items][#{pregunta.id}]" do |r| %>
-      <%= r.select(:respuesta, pregunta.respuestas.to_a.collect{|respuesta| [respuesta[1], respuesta[0].to_i]}) if pregunta.respuestas %><br />
+      <%- unless pregunta.multiple? %>
+        <%= r.select(:respuesta, pregunta.respuestas.to_a.collect{|respuesta| [respuesta[1], respuesta[0].to_i]}) if pregunta.respuestas %><br />
+      <%- else %>
+        <%- pregunta.respuestas.each do |respuesta| %>
+          <label><%= respuesta[1] %></label><%= r.text_field respuesta[0] %><br />
+        <%- end %>
+      <%- end %>
       <%- if pregunta.con_comentario? %>
         Comentario: <%= r.text_field :comentario  %><br />
       <%- end %>
