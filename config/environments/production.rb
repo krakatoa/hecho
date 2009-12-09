@@ -26,3 +26,6 @@ config.action_view.cache_template_loading            = true
 
 # Enable threaded mode
 # config.threadsafe!
+
+IMAGES_PATH = "#{RAILS_ROOT}/public/images/"
+HOSTNAME = "http://"

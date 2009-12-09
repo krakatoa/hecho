@@ -9,7 +9,11 @@ class Vendedor < ActiveRecord::Base
   validates_presence_of :provincia_id, :if => "pais == Pais.find_by_nombre('Argentina')"
   validates_uniqueness_of :credencial
 
+  after_destroy :borrar_foto
+
   named_scope :de_sexo, lambda { |sexo| { :conditions => ["sexo like ?", sexo] } }
+
+  attr_accessor :image
 
   # TODO validar formato credencial
 
@@ -35,8 +39,32 @@ class Vendedor < ActiveRecord::Base
     nacionalidad += pais.nombre
   end
 
+  def foto_fullpath
+    File.join(IMAGES_PATH, self.foto_filename)
+  end
+
+  def foto_path
+    if File.exists? foto_fullpath
+      return self.foto_filename
+    else
+      return nil
+    end
+  end
+
+  def foto_filename
+    "#{self.id}.jpg"
+  end
+
+  def foto_public_path
+    PUBLIC_IMAGES_URI.merge(foto_filename).to_s
+  end
+
   private
     def self.sexos
       @@sexos
+    end
+
+    def borrar_foto
+      File.delete self.foto_fullpath if File.exists? self.foto_fullpath
     end
 end

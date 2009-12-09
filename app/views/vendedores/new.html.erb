@@ -1,4 +1,4 @@
-<%- form_for @vendedor, :url => vendedores_path do |f| %>
+<%- form_for @vendedor, :url => vendedores_path, :html => { :multipart => true } do |f| %>
   <legend>Nuevo Vendedor</legend><br />
   <%= render :partial => "form", :locals => { :f => f } %>
   <p><%= f.submit "Submit" %></p>

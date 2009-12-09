@@ -11,6 +11,11 @@ class VendedoresController < ApplicationController
     @vendedor = Vendedor.new(params[:vendedor])
 
     if @vendedor.save
+      begin
+        FileUtils.mv params[:vendedor][:image].path, @vendedor.foto_fullpath
+      rescue
+      end
+      
       redirect_to new_vendedor_encuesta_url(@vendedor)
     else
       render :action => "new"
