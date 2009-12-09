@@ -3,6 +3,7 @@ namespace :db do
   task(:restart => :environment) do
     RAILS_ENV = "development"
 
+    Vendedor.destroy_all
     Rake::Task["db:drop"].invoke
     Rake::Task["db:create"].invoke
     Rake::Task["db:migrate"].invoke
