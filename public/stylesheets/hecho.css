@@ -6,3 +6,11 @@
 .deuda {
   color: red;
 }
+
+label {
+  font-weight: bold;
+}
+
+ul li {
+  list-style: none;
+}

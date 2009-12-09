@@ -12,6 +12,7 @@
     <%#= yield :header %>
   </head>
   <body>
+    <%= render :partial => "layouts/menu" %>
     <%= content_tag(:div, yield, {:id => "content", :class => yield(:content_class)}) %>
   </body>
 </html>
