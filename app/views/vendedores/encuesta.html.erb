@@ -1,3 +1,5 @@
+<%= link_to "volver", vendedor_path(@vendedor) %>
+<br />
 <%- if @vendedor.encuestas.size > 0 %>
   <%- @vendedor.encuestas.last.items.each do |item| %>
     <strong><%= item.pregunta.titulo %></strong><br />

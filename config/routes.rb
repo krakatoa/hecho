@@ -18,8 +18,9 @@ ActionController::Routing::Routes.draw do |map|
   # Sample resource route with sub-resources:
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
   map.resources :vendedores, :has_many => [ :entregas, :encuestas, :uso_servicios ],
-                              :member => { :credencial => :get }
+                              :member => { :credencial => :get, :encuesta => :get }
   map.distribucion "/distribucion", :controller => "entregas", :action => "index"
+  map.credenciales "/credenciales", :controller => "credenciales", :action => "index"
   #map.resources :entregas, :has_many => [ : ]
   map.resources :revistas, :member => { :control_stock => :post,
                                         :costo => :get } do |revista|

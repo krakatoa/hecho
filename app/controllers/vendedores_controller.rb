@@ -29,4 +29,12 @@ class VendedoresController < ApplicationController
   def update
     # TODO
   end
+
+  def credencial
+    @vendedor = Vendedor.find(params[:id])
+  end
+
+  def encuesta
+    @vendedor = Vendedor.find(params[:id])
+  end
 end

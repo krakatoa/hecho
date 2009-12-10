@@ -9,5 +9,6 @@
 <label>Total Revistas Vendidas: </label><%= @vendedor.total_vendidas %><br />
 <%= link_to "Compras", vendedor_entregas_path(@vendedor) %>
 <%= link_to "Servicios Sociales", vendedor_uso_servicios_path(@vendedor) %>
+<%= link_to "Credencial", credencial_vendedor_path(@vendedor) %>
 <br />
-<%= render :partial => "encuesta" %>
+<%= link_to "ver mas datos", encuesta_vendedor_path(@vendedor) %>

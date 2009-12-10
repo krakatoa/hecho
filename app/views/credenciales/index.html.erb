@@ -1,0 +1,8 @@
+<h1>Impresion Credencial</h1>
+
+Credencial del vendedor:
+<%- form_for :vendedor, :url => credenciales_url, :html => { :method => "post" } do |f| %>
+  <%= f.text_field :credencial %>
+  <%= f.submit "Buscar" %>
+<%- end %>
+<br />
