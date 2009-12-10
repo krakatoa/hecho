@@ -108,7 +108,8 @@ Pregunta.create!( :titulo => "Estas en la calle?",
 Pregunta.create!( :titulo => "Hace cuanto tiempo que estas en la calle?",
                   :respuestas => {  0 => "Semanas",
                                     1 => "Meses",
-                                    2 => "Anos" } )
+                                    2 => "Anos" },
+                  :multiple => true )
 Pregunta.create!( :titulo => "Donde estas viviendo ahora?",
                   :respuestas => {  0 => "En la calle",
                                     1 => "Pension/Hotel",
