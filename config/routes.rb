@@ -17,11 +17,15 @@ ActionController::Routing::Routes.draw do |map|
 
   # Sample resource route with sub-resources:
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  map.resources :vendedores, :has_many => [ :entregas, :encuestas, :uso_servicios ]
+  map.resources :vendedores, :has_many => [ :entregas, :encuestas, :uso_servicios ],
+                              :member => { :credencial => :get }
   map.distribucion "/distribucion", :controller => "entregas", :action => "index"
   #map.resources :entregas, :has_many => [ : ]
-  map.resources :revistas, :member => { :sumar_stock => :post,
-                                        :costo => :get }
+  map.resources :revistas, :member => { :control_stock => :post,
+                                        :costo => :get } do |revista|
+    revista.controles_stock "controles_stock", :controller => "controles_stock", :action => "index"
+  end
+
   #map.resources :uso_servicios
   map.resources :promociones, :member => {  :activar => :get,
                                             :desactivar => :get,

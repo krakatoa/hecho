@@ -1,14 +1,18 @@
+<%= link_to "volver", revistas_path %>
+
 <table>
   <thead>
     <th>Revista Nro.</th>
     <th>Ingreso</th>
     <th>Salida</th>
+    <th>Fecha</th>
   </thead>
   <%- @controles_stock.each do |control_stock| %>
     <tr>
       <td><%= control_stock.revista.numero %></td>
       <td><%= control_stock.variacion > 0 ? control_stock.variacion : "-" %></td>
       <td><%= control_stock.variacion < 0 ? -control_stock.variacion : "-" %></td>
+      <td><%= control_stock.created_at %></td>
     </tr>
   <%- end %>
 </table>

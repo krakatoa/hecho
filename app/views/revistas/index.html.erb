@@ -15,7 +15,9 @@
         <td><%= revista.ano %></td>
         <td><%= revista.valor %></td>
         <td class="stock"><%= revista.stock %></td>
-        <td><%= link_to_function "sumar stock", :onclick => "popup_sumar_stock(#{revista.id})" %></td>
+        <td><%= link_to_function "sumar", :onclick => "popup_sumar_stock(#{revista.id})" %></td>
+        <td><%= link_to_function "restar", :onclick => "popup_restar_stock(#{revista.id})" %></td>
+        <td><%= link_to "control", revista_controles_stock_path(revista) %></td>
       </tr>
     <% end %>
   </table>

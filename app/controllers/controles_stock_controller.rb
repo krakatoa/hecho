@@ -1,6 +1,11 @@
 class ControlesStockController < ApplicationController
   def index
-    @controles_stock = ControlStock.all(:order => "created_at DESC")
+    if not params[:revista_id].blank?
+      @revista = Revista.find(params[:revista_id])
+      @controles_stock = @revista.controles_stock
+    else
+      @controles_stock = ControlStock.all(:order => "created_at DESC")
+    end
   end
 
   def new

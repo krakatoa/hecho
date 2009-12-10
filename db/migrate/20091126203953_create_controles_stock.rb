@@ -3,6 +3,7 @@ class CreateControlesStock < ActiveRecord::Migration
     create_table :controles_stock do |t|
       t.integer :revista_id, :default => nil, :null => false
       t.integer :variacion, :default => nil, :null => false
+      t.boolean :aplicado, :default => false
 
       t.timestamps
     end

@@ -2,6 +2,8 @@ class Revista < ActiveRecord::Base
   # TODO validar rango de mes entre 1 y 12
   # TODO generar el proximo numero
 
+  has_many :controles_stock, :class_name => "ControlStock", :order => "created_at ASC"
+
   validates_presence_of :numero, :mes, :ano
 
   def initialize(attributes={})
@@ -19,6 +21,10 @@ class Revista < ActiveRecord::Base
     end
   end
 
+  def control_stock(variacion)
+    ControlStock.create(:revista => self, :variacion => variacion)
+  end
+
   def sumar_stock(cantidad)
     self.stock += cantidad
     self.save
@@ -33,8 +39,7 @@ class Revista < ActiveRecord::Base
     def self.sumar_stock(numero, cantidad)
       begin
         r = Revista.find_by_numero!(numero)
-        r.stock += cantidad
-        r.save
+        r.sumar_stock(cantidad)
       rescue ActiveRecord::RecordNotFound
         return false
       end
@@ -43,8 +48,7 @@ class Revista < ActiveRecord::Base
     def self.restar_stock(numero, cantidad)
       begin
         r = Revista.find_by_numero!(numero)
-        r.stock -= cantidad
-        r.save
+        r.restar_stock(cantidad)
       rescue ActiveRecord::RecordNotFound
         return false
       end

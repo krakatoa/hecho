@@ -32,12 +32,21 @@ function bind_triggers() {
 
 function popup_sumar_stock(revista) {
   var valor = prompt('Cantidad de revistas a sumar');
-  if (!isNaN(valor) && valor != null) {
+  control_stock(revista, valor);
+}
+
+function popup_restar_stock(revista) {
+  var valor = prompt('Cantidad de revistas a restar');
+  control_stock(revista, -valor);
+}
+
+function control_stock(revista, variacion) {
+  if (!isNaN(variacion) && variacion != null) {
     if (typeof(AUTH_TOKEN) == "undefined") return;
     $.ajax({
       type: "POST",
-      url: "/revistas/" + revista + "/sumar_stock",
-      data: "authenticity_token=" + encodeURIComponent(AUTH_TOKEN)+"&cantidad="+valor,
+      url: "/revistas/" + revista + "/control_stock",
+      data: "authenticity_token=" + encodeURIComponent(AUTH_TOKEN)+"&cantidad="+variacion,
       dataType: "script",
       async: false,
       success: function fn(result) {
@@ -46,8 +55,8 @@ function popup_sumar_stock(revista) {
       }
     });
   } else {
-    if (valor != null) {
-      alert("'" + valor + "' no es un numero valido.");
+    if (variacion != null) {
+      alert("'" + variacion + "' no es un numero valido.");
     };
   }
 }
