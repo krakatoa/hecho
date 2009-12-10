@@ -1,9 +1,25 @@
 <h1>Distribucion</h1>
 
-Credencial del vendedor:
+<%- form_for :entrega, :url => entregas_url, :html => {:id => "new_entrega"} do |f| %>
+  <%- if f.error_messages.size > 0 %>
+    <div class="error"><%= f.error_messages %></div>
+  <%- end %>
+  <%- if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <%- end %>
+  <%= hidden_field_tag(:costo) %>
+  Edicion: <%= f.select :revista_id, coleccion_revistas %><br />
+  Credencial Vendedor: <%= f.text_field :vendedor_credencial %><br />
+  Cantidad: <%= f.text_field :cantidad_pagas %><br />
+  Pago: <%= f.text_field :pago %><br />
+  <%= f.submit "Registrar venta" %>
+<%- end %>
+
+<!--
 <%- form_for :vendedor, :url => distribucion_url, :html => { :method => "post" } do |f| %>
-  <%= f.text_field :credencial %>
+  Al vendedor con credencial: <%= f.text_field :credencial %>
   <%= f.submit "Buscar" %>
 <%- end %>
 <br />
+--!>
 <%= link_to "control revistas", revistas_path %>

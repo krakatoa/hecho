@@ -22,7 +22,7 @@ class EntregasController < ApplicationController
 
   def new
     @entrega = Entrega.new
-    @entrega.vendedor = @vendedor
+    @entrega.vendedor = @vendedor if @vendedor
     @entrega.revista = Revista.last
   end
 
@@ -34,9 +34,18 @@ class EntregasController < ApplicationController
     @entrega.vendedor = @vendedor
 
     if @entrega.save
-      redirect_to vendedor_entregas_url(@vendedor)
+      if request.env['REQUEST_PATH'] == entregas_path
+        flash[:notice] = "La venta se registro exitosamente."
+        redirect_to distribucion_path
+      else
+        redirect_to vendedor_entregas_url(@vendedor)
+      end
     else
-      render :action => "new"
+      if request.env['REQUEST_PATH'] == entregas_path
+        redirect_to distribucion_path
+      else
+        render :action => "new"
+      end
     end
   end
 
@@ -49,6 +58,10 @@ class EntregasController < ApplicationController
       begin
         @vendedor = Vendedor.find(params[:vendedor_id])
       rescue
+      end
+      if not @vendedor and params.has_key?(:entrega) and params[:entrega].has_key?(:vendedor_credencial)
+        @vendedor = Vendedor.find_by_credencial(params[:entrega][:vendedor_credencial])
+        params[:entrega].delete(:vendedor_credencial)
       end
     end
 end

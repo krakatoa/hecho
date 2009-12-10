@@ -7,6 +7,7 @@ class Entrega < ActiveRecord::Base
 
   def initialize(attributes = {})
     super
+    self.cantidad_pagas ||= 0
   end
 
   def after_initialize
@@ -55,6 +56,7 @@ class Entrega < ActiveRecord::Base
   end
 
   def vendedor=(vendedor)
+    return if not vendedor
     write_attribute("vendedor_id", vendedor.id)
     if self.vendedor and (self.vendedor.fecha_nacimiento.day == Time.now.day) and (self.vendedor.fecha_nacimiento.month == Time.now.month)
       self.promociones << CumpleanosPromocion.first

@@ -21,11 +21,9 @@ ActionController::Routing::Routes.draw do |map|
                               :member => { :credencial => :get, :encuesta => :get }
   map.distribucion "/distribucion", :controller => "entregas", :action => "index"
   map.credenciales "/credenciales", :controller => "credenciales", :action => "index"
-  #map.resources :entregas, :has_many => [ : ]
+  map.resources :entregas
   map.resources :revistas, :member => { :control_stock => :post,
-                                        :costo => :get } do |revista|
-    revista.controles_stock "controles_stock", :controller => "controles_stock", :action => "index"
-  end
+                                        :costo => :get }, :has_many => [ :controles_stock ]
 
   #map.resources :uso_servicios
   map.resources :promociones, :member => {  :activar => :get,
