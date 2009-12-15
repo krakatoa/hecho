@@ -3,6 +3,15 @@ $(document).ready(function() {
 });
 
 function bind_triggers() {
+  $("form#new_vendedor select#vendedor_pais_id").unbind("change");
+  $("form#new_vendedor select#vendedor_pais_id").change(function() {
+    if (parseInt($(this).attr("value")) == 1) {
+      $("form#new_vendedor #vendedor_provincia").show();
+    } else {
+      $("form#new_vendedor #vendedor_provincia").hide();
+    }
+  });
+
   $("form#new_uso_servicio select#uso_servicio_rubro_id").unbind("change");
   $("form#new_uso_servicio select#uso_servicio_rubro_id").change(function() {
     var rubro_elegido = $(this).attr("value");

@@ -1,3 +1,4 @@
+
 class Vendedor < ActiveRecord::Base
   has_many :compras, :class_name => "Entrega", :order => "created_at ASC"
   has_many :encuestas, :order => "created_at ASC"
@@ -10,6 +11,7 @@ class Vendedor < ActiveRecord::Base
   validates_presence_of :provincia_id, :if => "pais == Pais.find_by_nombre('Argentina')"
   validates_uniqueness_of :credencial
 
+  before_save :chequear_provincia
   after_destroy :borrar_foto
 
   named_scope :de_sexo, lambda { |sexo| { :conditions => ["sexo like ?", sexo] } }
@@ -81,5 +83,9 @@ class Vendedor < ActiveRecord::Base
 
     def borrar_foto
       File.delete self.foto_fullpath if File.exists? self.foto_fullpath
+    end
+
+    def chequear_provincia
+      self.provincia = nil unless self.pais.nombre.eql?("Argentina")
     end
 end
