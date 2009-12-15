@@ -20,6 +20,11 @@ class Vendedor < ActiveRecord::Base
 
   @@sexos = %w[ Varon Mujer ]
 
+  def initialize(attributes={})
+    super
+    self.credencial ||= Vendedor.ultima_credencial + 1
+  end
+
   def edad
     edad = Time.now.year - self.fecha_nacimiento.year
     edad -= 1 if (Time.parse("#{self.fecha_nacimiento.day}-#{self.fecha_nacimiento.month}-#{Time.now.year}") > Time.now)
@@ -67,6 +72,11 @@ class Vendedor < ActiveRecord::Base
   private
     def self.sexos
       @@sexos
+    end
+
+    def self.ultima_credencial
+      ultimo_vendedor = Vendedor.last(:order => :credencial)
+      ultimo_vendedor.blank? ? 0 : ultimo_vendedor.credencial
     end
 
     def borrar_foto
