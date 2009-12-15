@@ -2,6 +2,7 @@ class Vendedor < ActiveRecord::Base
   has_many :compras, :class_name => "Entrega", :order => "created_at ASC"
   has_many :encuestas, :order => "created_at ASC"
   has_many :uso_servicios
+  has_many :puntos_de_venta, :class_name => "PuntoDeVenta"
   belongs_to :pais
   belongs_to :provincia
 

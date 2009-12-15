@@ -15,6 +15,14 @@ class VendedoresController < ApplicationController
         FileUtils.mv params[:vendedor][:image].path, @vendedor.foto_fullpath
       rescue
       end
+
+      params[:puntos_de_venta].each_pair do |key, punto_de_venta_params|
+        punto_de_venta = PuntoDeVenta.new(punto_de_venta_params)
+        punto_de_venta.vendedor = @vendedor
+        punto_de_venta.inicio = Time.now if @vendedor.puntos_de_venta.blank?
+        punto_de_venta.save
+        @vendedor.reload
+      end
       
       redirect_to new_vendedor_encuesta_url(@vendedor)
     else

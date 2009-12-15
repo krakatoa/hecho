@@ -12,4 +12,13 @@
 <label>Fecha Inscripcion</label> <%= f.date_select :fecha_inscripcion %><br />
 <label>Telefono</label> <%= f.text_field :telefono %><br />
 <label>Direccion</label> <%= f.text_field :direccion %><br />
-<label>Foto</label><%= f.file_field :image %>
+<label>Foto</label> <%= f.file_field :image %><br />
+<br />
+<label>Puntos de Venta:</label>
+<% fields_for :puntos_de_venta do |puntos_de_venta| %>
+  <%- (1..5).to_a.each do |n| %>
+    <% puntos_de_venta.fields_for n.to_s do |p| %>
+      <p><label>Lugar<%= n == 1 ? " inicial" : " alternativo" %>:</label> <%= p.text_field :lugar %></p>
+    <% end %>
+  <%- end %>
+<% end %>

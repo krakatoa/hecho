@@ -7,6 +7,22 @@
 <label>Fecha de Inscripcion: </label><%= @vendedor.fecha_inscripcion %><br />
 <br />
 <label>Total Revistas Vendidas: </label><%= @vendedor.total_vendidas %><br />
+<br />
+<%- if @vendedor.puntos_de_venta.size > 0 %>
+  <table>
+    <thead>
+      <th>Puntos de venta</th>
+      <th>Activo</th>
+    </thead>
+    <%- @vendedor.puntos_de_venta.each do |puntos_de_venta| %>
+      <tr>
+        <td><%= puntos_de_venta.lugar %></td>
+        <td><%= puntos_de_venta.activo? ? "Si" : "No" %></td>
+      </tr>
+    <%- end %>
+  </table>
+<%- end %>
+<br />
 <%= link_to "Compras", vendedor_entregas_path(@vendedor) %>
 <%= link_to "Servicios Sociales", vendedor_uso_servicios_path(@vendedor) %>
 <%= link_to "Credencial", credencial_vendedor_path(@vendedor) %>
