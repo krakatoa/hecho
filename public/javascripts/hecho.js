@@ -10,6 +10,11 @@ function bind_triggers() {
     } else {
       $("form#new_vendedor #vendedor_provincia").hide();
     }
+    if (parseInt($(this).attr("value")) == 0) {
+      $("form#new_vendedor #vendedor_otro_pais").show();
+    } else {
+      $("form#new_vendedor #vendedor_otro_pais").hide();
+    }
   });
 
   $("form#new_uso_servicio select#uso_servicio_rubro_id").unbind("change");

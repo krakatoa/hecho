@@ -8,6 +8,15 @@ class VendedoresController < ApplicationController
   end
 
   def create
+    begin
+      if (params[:vendedor][:pais_id].to_i == 0 and params[:vendedor].has_key?(:pais) and not params[:vendedor][:pais].blank?) # Otro pais
+        pais = Pais.create(:nombre => params[:vendedor][:pais])
+        params[:vendedor].delete(:pais)
+        params[:vendedor][:pais_id] = pais.id
+      end
+    rescue
+    end
+
     @vendedor = Vendedor.new(params[:vendedor])
 
     if @vendedor.save
