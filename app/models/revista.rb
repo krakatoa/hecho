@@ -9,15 +9,20 @@ class Revista < ActiveRecord::Base
   def initialize(attributes={})
     super
     ultimo_ejemplar = Revista.ultimo_ejemplar
-    self.numero ||= ultimo_ejemplar.numero + 1
-    self.valor ||= ultimo_ejemplar.valor
-    if not self.mes and not self.ano
-      self.mes ||= ultimo_ejemplar.mes + 1
-      self.ano ||= ultimo_ejemplar.ano
-      if self.mes > 12
-        self.ano += 1
-        self.mes = 1
+    if ultimo_ejemplar
+      self.numero ||= ultimo_ejemplar.numero + 1
+      self.valor ||= ultimo_ejemplar.valor
+      if not self.mes and not self.ano
+        self.mes ||= ultimo_ejemplar.mes + 1
+        self.ano ||= ultimo_ejemplar.ano
+        if self.mes > 12
+          self.ano += 1
+          self.mes = 1
+        end
       end
+    else
+      self.numero ||= 1
+      self.valor ||= 0
     end
   end
 
@@ -59,6 +64,8 @@ class Revista < ActiveRecord::Base
     end
 
     def self.ultimo_valor
-      Revista.ultimo_ejemplar.valor
+      ultimo_ejemplar = Revista.ultimo_ejemplar
+      return 0 if not ultimo_ejemplar
+      return ultimo_ejemplar.valor
     end
 end
