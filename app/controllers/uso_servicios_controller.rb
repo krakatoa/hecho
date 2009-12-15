@@ -4,7 +4,11 @@ class UsoServiciosController < ApplicationController
   def index
     if request.post?
       @vendedor = Vendedor.find_by_credencial(params["vendedor"]["credencial"])
-      redirect_to new_vendedor_uso_servicio_url(@vendedor)
+      if @vendedor
+        redirect_to new_vendedor_uso_servicio_url(@vendedor)
+      else
+        render :template => "uso_servicios/servicios_sociales"
+      end
     else
       if @vendedor
         @usos_servicios = @vendedor.uso_servicios
@@ -12,6 +16,7 @@ class UsoServiciosController < ApplicationController
         render :template => "uso_servicios/servicios_sociales"
       end
     end
+    
   end
 
   def new
