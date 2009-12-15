@@ -1,0 +1,6 @@
+<%- pdf.select_font "Times-Roman" %>
+<%- pdf.text "#{@vendedor.nombre} #{@vendedor.apellido}", :font_size => 20, :justification => :center, :leading => 54 %>
+<%- pdf.text "\n", :font_size => 20, :justification => :center, :leading => 10 %>
+<%- pdf.text "Nro. de Vendedor: #{@vendedor.credencial}", :font_size => 14, :justification => :center, :leading => 14 %>
+<%- pdf.add_image_from_file @vendedor.foto_fullpath, 230, 550, 150, 150 if File.exists? @vendedor.foto_fullpath %>
+<%- return pdf %>

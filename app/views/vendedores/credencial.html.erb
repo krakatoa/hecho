@@ -1,3 +1,4 @@
 <%= image_tag(@vendedor.foto_path, :width => "100", :height => "100") if @vendedor.foto_path %><br />
 <label>Nro de vendedor:</label> <%= @vendedor.credencial %><br />
 <label>Nombre y Apellido: </label><%= "#{@vendedor.nombre} #{@vendedor.apellido}" %>
+<%= link_to(image_tag("icon_pdf.png"), credencial_vendedor_path(@vendedor, :format => "pdf")) %>

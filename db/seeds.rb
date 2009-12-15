@@ -1,5 +1,5 @@
-Revista.create!(:mes => 9, :ano => 2009, :numero => 15, :valor => 0.9, :stock => 500)
-Revista.create!(:mes => 10, :ano => 2009, :numero => 16, :stock => 1000)
+#Revista.create!(:mes => 9, :ano => 2009, :numero => 15, :valor => 0.9, :stock => 500)
+#Revista.create!(:mes => 10, :ano => 2009, :numero => 16, :stock => 1000)
 
 rubros = []
 rubros << Rubro.create!(:nombre => "Participacion en talleres propios")
@@ -56,6 +56,7 @@ Provincia.create!(:nombre => "La Rioja")
 Provincia.create!(:nombre => "Santa Cruz")
 Provincia.create!(:nombre => "Tierra del Fuego")
 
+=begin
 Vendedor.create!( :credencial => 521,
                   :nombre => "Oscar",
                   :apellido => "Galvez",
@@ -74,6 +75,7 @@ Vendedor.create!( :credencial => 522,
                   :pais => Pais.find_by_nombre("Bolivia"),
                   :personal_inscripcion => "Pepe Pompin",
                   :fecha_inscripcion => Time.now)
+=end
 
 CincuentaPorCientoPromocion.create!(:nombre => "50%", :desactivable => true)
 CincoPrimerasPromocion.create!(:nombre => "5 primeras", :desactivable => true, :cantidad_variable => true)

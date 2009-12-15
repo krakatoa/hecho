@@ -11,10 +11,11 @@ class VendedoresController < ApplicationController
     begin
       if (params[:vendedor][:pais_id].to_i == 0 and params[:vendedor].has_key?(:pais) and not params[:vendedor][:pais].blank?) # Otro pais
         pais = Pais.create(:nombre => params[:vendedor][:pais])
-        params[:vendedor].delete(:pais)
         params[:vendedor][:pais_id] = pais.id
       end
     rescue
+    ensure
+      params[:vendedor].delete(:pais)
     end
 
     @vendedor = Vendedor.new(params[:vendedor])
@@ -49,6 +50,16 @@ class VendedoresController < ApplicationController
 
   def credencial
     @vendedor = Vendedor.find(params[:id])
+
+    respond_to { |wants|
+      wants.html { render }
+      wants.pdf {
+        pdf = PDF::Writer.new(:paper => "A4")
+        headers['Content-Disposition'] = "filename=\"#{@vendedor.nombre} #{@vendedor.apellido}.pdf\""
+        render  :template => "vendedores/credencial.pdf.erb",
+                :locals => { :pdf => pdf }
+      }
+    }
   end
 
   def encuesta
