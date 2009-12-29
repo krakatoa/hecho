@@ -6,6 +6,7 @@
 <label>Persona del equipo que realizo la inscripcion: </label><%= @vendedor.personal_inscripcion %><br />
 <label>Fecha de Inscripcion: </label><%= @vendedor.fecha_inscripcion %><br />
 <br />
+<%= link_to_function("Devolver plata", :onclick => "popup_devolver_plata(#{@vendedor.id})") %><br />
 <label>Total Revistas Compradas: </label><%= @vendedor.total_vendidas %><br />
 <br />
 <%- if @vendedor.puntos_de_venta.size > 0 %>

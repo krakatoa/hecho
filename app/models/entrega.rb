@@ -3,11 +3,12 @@ class Entrega < ActiveRecord::Base
   belongs_to :vendedor
   has_and_belongs_to_many :promociones, :uniq => true
 
-  validates_presence_of :revista_id, :vendedor_id, :cantidad
+  validates_presence_of :vendedor_id, :cantidad
 
   def initialize(attributes = {})
     super
     self.cantidad_pagas ||= 0
+    self.pago ||= 0
   end
 
   def after_initialize
@@ -47,7 +48,8 @@ class Entrega < ActiveRecord::Base
   end
 
   def before_save
-    self.costo = self.revista.valor * self.cantidad_pagas
+    self.costo = self.revista.valor * self.cantidad_pagas if self.revista
+    self.costo ||= 0
     self.calculo_promocion!
   end
 

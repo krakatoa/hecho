@@ -15,4 +15,10 @@ module ApplicationHelper
   def coleccion_revistas
     Revista.all(:order => "numero DESC").collect { |revista| [revista.numero, revista.id] }
   end
+
+  def formato_fecha(fecha)
+    # 5/30/09 1:30pm
+    #fecha.strftime("%d/%m/%y %I:%M%p").downcase unless fecha.blank?
+    fecha.strftime("%d/%m/%y").downcase unless fecha.blank?
+  end
 end

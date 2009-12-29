@@ -42,6 +42,7 @@ class EntregasController < ApplicationController
       end
     else
       if request.env['REQUEST_PATH'] == entregas_path
+        flash[:notice] = "No pudo registrarse la venta."
         redirect_to distribucion_path
       else
         render :action => "new"

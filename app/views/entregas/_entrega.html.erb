@@ -1,0 +1,18 @@
+<tr>
+  <td><%= compra.revista.numero if compra.revista %></td>
+  <td><%= formato_fecha(compra.created_at) %></td>
+  <td><%= compra.cantidad %> <%= "(#{compra.cantidad_gratis} x promo)" if compra.promociones.size > 0 %></td>
+  <td><%= compra.pago %></td>
+  <%- if compra.saldo_vendedor < 0 %>
+    <td class="deuda">
+      <%= - compra.saldo_vendedor %>
+    </td>
+  <%- else %>
+    <td></td>
+  <%- end %>
+  <td>
+    <%- if compra.promociones.size > 0 %>
+      <strong>Promo: <%= mostrar_promociones(compra) %></strong>
+    <%- end %>
+  </td>
+</tr>

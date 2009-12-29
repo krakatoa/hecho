@@ -44,6 +44,29 @@ function bind_triggers() {
   });
 }
 
+function popup_devolver_plata(vendedor) {
+  var valor = prompt('Plata a devolver');
+  devolver_plata(vendedor, valor);
+  return false;
+}
+
+function devolver_plata(vendedor, valor) {
+  if (!isNaN(valor) && valor != null) {
+    if (typeof(AUTH_TOKEN) == "undefined") return;
+    $.ajax({
+      type: "POST",
+      url: "/entregas",
+      data: "authenticity_token=" + encodeURIComponent(AUTH_TOKEN)+"&entrega[vendedor_id]="+vendedor+"&entrega[pago]="+valor,
+      dataType: "script",
+      async: false
+    });
+  } else {
+    if (valor != null) {
+      alert("'" + valor + "' no es un numero valido.");
+    }
+  }
+}
+
 function popup_sumar_stock(revista) {
   var valor = prompt('Cantidad de revistas a sumar');
   control_stock(revista, valor);
@@ -71,7 +94,7 @@ function control_stock(revista, variacion) {
   } else {
     if (variacion != null) {
       alert("'" + variacion + "' no es un numero valido.");
-    };
+    }
   }
 }
 
@@ -93,7 +116,7 @@ function popup_agregar_promo(promocion) {
   } else {
     if (valor != null) {
       alert("'" + valor + "' no es un numero valido.");
-    };
+    }
   }
 }
 
