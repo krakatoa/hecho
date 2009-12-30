@@ -1,5 +1,5 @@
-#Revista.create!(:mes => 9, :ano => 2009, :numero => 15, :valor => 0.9, :stock => 500)
-#Revista.create!(:mes => 10, :ano => 2009, :numero => 16, :stock => 1000)
+Revista.create!(:mes => 9, :ano => 2009, :numero => 110, :valor => 0.9, :stock => 500)
+Revista.create!(:mes => 10, :ano => 2009, :numero => 111, :stock => 1000)
 
 rubros = []
 rubros << Rubro.create!(:nombre => "Participacion en talleres propios")
@@ -39,7 +39,7 @@ Provincia.create!(:nombre => "Santa Fe")
 Provincia.create!(:nombre => "Formosa")
 Provincia.create!(:nombre => "Rio Negro")
 Provincia.create!(:nombre => "Chubut")
-Provincia.create!(:nombre => "Ciudad Autonoma de Buenos Aires")
+Provincia.create!(:nombre => "Capital Federal")
 Provincia.create!(:nombre => "Mendoza")
 Provincia.create!(:nombre => "San Luis")
 Provincia.create!(:nombre => "San Juan")
