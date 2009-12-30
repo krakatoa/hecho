@@ -1,6 +1,5 @@
 <%- form_for :revista, :url => revista_path(@revista), :html => { :method => :put } do |f| %>
   <%= render :partial => "form", :locals => { :f => f } %>
-  <label>Valor</label> <%= f.text_field :valor %><br />
   <label>Stock</label> <%= f.text_field :stock %><br />
   <%= f.submit "Guardar" %>
 <%- end %>
