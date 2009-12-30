@@ -56,11 +56,8 @@ class Vendedor < ActiveRecord::Base
   end
 
   def foto_path
-    if File.exists? foto_fullpath
-      return self.foto_filename
-    else
-      return nil
-    end
+    return nil unless File.exists? foto_fullpath
+    return self.foto_filename
   end
 
   def foto_filename
