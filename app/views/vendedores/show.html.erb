@@ -6,9 +6,6 @@
 <label>Persona del equipo que realizo la inscripcion: </label><%= @vendedor.personal_inscripcion %><br />
 <label>Fecha de Inscripcion: </label><%= @vendedor.fecha_inscripcion %><br />
 <br />
-<%= link_to_function("Devolver plata", :onclick => "popup_devolver_plata(#{@vendedor.id})") %><br />
-<label>Total Revistas Compradas: </label><%= @vendedor.total_vendidas %><br />
-<br />
 <%- if @vendedor.puntos_de_venta.size > 0 %>
   <table>
     <thead>
@@ -28,4 +25,4 @@
 <%= link_to "Servicios Sociales", vendedor_uso_servicios_path(@vendedor) %>
 <%= link_to "Credencial", credencial_vendedor_path(@vendedor) %>
 <br />
-<%= link_to "ver mas datos", encuesta_vendedor_path(@vendedor) %>
+<%= link_to "Ver ficha de inscripcion", encuesta_vendedor_path(@vendedor) %>

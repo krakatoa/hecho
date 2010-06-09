@@ -24,6 +24,9 @@
       <%- end %>
     </tr>
   </table>
+  <%= link_to_function("Devolver plata", :onclick => "popup_devolver_plata(#{@vendedor.id})") %><br />
+  <!--<label>Total Revistas Compradas: </label><%= @vendedor.total_vendidas %><br />-->
+  <br />
 <%- else %>
   El vendedor todavia no realizo una compra.<br />
 <%- end %>
