@@ -3,15 +3,15 @@ class CreateVendedores < ActiveRecord::Migration
     create_table :vendedores do |t|
       t.integer :credencial, :null => false, :default => nil
       t.string  :nombre, :null => false
-      t.string  :apellido, :null => false
-      t.date    :fecha_nacimiento, :null => false
-      t.string  :sexo, :null => false
-      t.integer :pais_id, :null => false
-      t.integer :provincia_id
+      t.string  :apellido, :default => nil#, :null => false
+      t.date    :fecha_nacimiento, :default => nil#, :null => false
+      t.string  :sexo, :default => nil#, :null => false
+      t.integer :pais_id, :default => nil#, :null => false
+      t.integer :provincia_id, :default => nil
       t.string :telefono, :default => nil
       t.string :direccion, :default => nil
-      t.string :personal_inscripcion, :null => false, :default => nil
-      t.date :fecha_inscripcion, :null => false, :default => nil
+      t.string :personal_inscripcion, :default => nil#, :null => false
+      t.date :fecha_inscripcion, :default => nil#, :null => false
 
       # encuesta
 

@@ -7,7 +7,8 @@ class Vendedor < ActiveRecord::Base
   belongs_to :pais
   belongs_to :provincia
 
-  validates_presence_of :credencial, :nombre, :apellido, :fecha_nacimiento, :sexo, :pais_id, :personal_inscripcion, :fecha_inscripcion
+  validates_presence_of :credencial, :nombre
+  #validates_presence_of :apellido, :fecha_nacimiento, :sexo, :pais_id, :personal_inscripcion, :fecha_inscripcion
   validates_presence_of :provincia_id, :if => "pais == Pais.find_by_nombre('Argentina')"
   validates_uniqueness_of :credencial
 
@@ -28,6 +29,7 @@ class Vendedor < ActiveRecord::Base
   end
 
   def edad
+    return nil unless self.fecha_nacimiento
     edad = Time.now.year - self.fecha_nacimiento.year
     edad -= 1 if (Time.parse("#{self.fecha_nacimiento.day}-#{self.fecha_nacimiento.month}-#{Time.now.year}") > Time.now)
     return edad
@@ -83,6 +85,7 @@ class Vendedor < ActiveRecord::Base
     end
 
     def chequear_provincia
+      return if not self.pais
       self.provincia = nil unless self.pais.nombre.eql?("Argentina")
     end
 end

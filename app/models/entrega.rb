@@ -60,7 +60,7 @@ class Entrega < ActiveRecord::Base
   def vendedor=(vendedor)
     return if not vendedor
     write_attribute("vendedor_id", vendedor.id)
-    if self.vendedor and (self.vendedor.fecha_nacimiento.day == Time.now.day) and (self.vendedor.fecha_nacimiento.month == Time.now.month)
+    if self.vendedor and self.vendedor.fecha_nacimiento and (self.vendedor.fecha_nacimiento.day == Time.now.day) and (self.vendedor.fecha_nacimiento.month == Time.now.month)
       self.promociones << CumpleanosPromocion.first
     end
     if self.vendedor and (self.vendedor.compras.size == 0)
