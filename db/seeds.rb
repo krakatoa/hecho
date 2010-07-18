@@ -1,5 +1,5 @@
-Revista.create!(:mes => 9, :ano => 2009, :numero => 110, :valor => 0.9, :stock => 500)
-Revista.create!(:mes => 10, :ano => 2009, :numero => 111, :stock => 1000)
+Revista.create!(:mes => 9, :ano => 2009, :numero => 110, :valor => 0.9, :stock => 50000)
+Revista.create!(:mes => 10, :ano => 2009, :numero => 111, :stock => 50000)
 
 rubros = []
 rubros << Rubro.create!(:nombre => "Participacion en talleres propios")
