@@ -1,0 +1,22 @@
+<%- form_for @encuesta, :url => vendedor_encuesta_path(@vendedor, @encuesta), :html => { :method => :put } do |f| %>
+  <legend>Ficha de Inscripcion para vendedor nro: <%= @vendedor.credencial %></legend><br />
+
+   <%- @encuesta.items.each do |item| %>
+    <strong><%= item.pregunta.titulo %></strong><br />
+    <%- fields_for "encuesta[items][#{item.pregunta.id}]" do |r| %>
+      <%- unless item.pregunta.multiple? %>
+        <%= r.select(:respuesta, item.pregunta.respuestas.to_a.collect{|respuesta| [respuesta[1], respuesta[0].to_i]}, :selected => item.respuesta.to_i) if item.pregunta.respuestas %><br />
+      <%- else %>
+        <%- item.pregunta.respuestas.each do |respuesta| %>
+          <label><%= respuesta[1] %></label><%= r.text_field respuesta[0], :value => item.respuesta[respuesta[0].to_s] %><br />
+        <%- end %>
+      <%- end %>
+      <%- if item.pregunta.con_comentario? %>
+        Comentario: <%= r.text_field :comentario, :value => item.comentario %><br />
+      <%- end %>
+    <%- end %>
+    <br />
+  <%- end %>
+  <p><%= f.submit "Guardar" %></p>
+<%- end %>
+<%= link_to "Atras", vendedor_path(@vendedor) %>

@@ -35,6 +35,21 @@ class EncuestasController < ApplicationController
   end
 
   def update
+    @encuesta = Encuesta.find(params[:id])
+    params[:encuesta][:items].each_pair { |key, respuesta_params|
+      item = @encuesta.items.select{|i| i.pregunta_id == key.to_i}.first
+      if item.pregunta.multiple?
+        item.respuesta = respuesta_params
+        item.save
+      else
+        item.update_attributes(respuesta_params)
+      end
+    }
+    redirect_to vendedor_url(@vendedor)
+  end
+
+  def edit
+    @encuesta = Encuesta.find(params[:id])
   end
 
   private

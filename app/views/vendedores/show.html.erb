@@ -25,4 +25,8 @@
 <%= link_to "Servicios Sociales", vendedor_uso_servicios_path(@vendedor) %>
 <%= link_to "Credencial", credencial_vendedor_path(@vendedor) %>
 <br />
-<%= link_to "Ver ficha de inscripcion", encuesta_vendedor_path(@vendedor) %>
+<%- if @vendedor.encuestas.size > 0 %>
+  <%= link_to "Ver ficha de inscripcion", encuesta_vendedor_path(@vendedor) %>
+<%- else %>
+  <%= "No tiene ficha de inscripcion." %> <%= link_to "Cargar ficha de inscripcion", new_vendedor_encuesta_url(@vendedor) %>
+<%- end %>
