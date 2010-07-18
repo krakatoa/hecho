@@ -13,7 +13,8 @@ class UsoServiciosController < ApplicationController
       if @vendedor
         @usos_servicios = @vendedor.uso_servicios
       else
-        render :template => "uso_servicios/servicios_sociales"
+        @usos_servicios = UsoServicio.all
+        #render :template => "uso_servicios/servicios_sociales"
       end
     end
     

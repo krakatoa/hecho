@@ -5,6 +5,9 @@
       <th>Servicio</th>
       <th>Fecha</th>
       <th>Comentario</th>
+      <% unless @vendedor %>
+        <th>Vendedor</th>
+      <% end %>
     </thead>
     <% @usos_servicios.each do |uso_servicio| %>
       <tr>
@@ -12,6 +15,7 @@
         <td><%= uso_servicio.servicio.nombre if uso_servicio.servicio%></td>
         <td><%= uso_servicio.fecha %></td>
         <td><%= uso_servicio.comentario %></td>
+        <% unless @vendedor %><td><%= "#{uso_servicio.vendedor.nombre} #{uso_servicio.vendedor.apellido}" %></td><% end %>
       </tr>
     <% end %>
   </table>
