@@ -61,7 +61,10 @@ class Entrega < ActiveRecord::Base
   def vendedor=(vendedor)
     return if not vendedor
     write_attribute("vendedor_id", vendedor.id)
-    if self.vendedor and self.vendedor.fecha_nacimiento and (self.vendedor.fecha_nacimiento.day == Time.now.day) and (self.vendedor.fecha_nacimiento.month == Time.now.month)
+    if self.vendedor and
+        self.vendedor.fecha_nacimiento and
+        self.vendedor.fecha_nacimiento <= Time.now.to_date and
+        Entrega.all(:conditions => ["MONTH(created_at) >= ? AND YEAR(created_at) >= ? AND vendedor_id = ?", Time.now.month, Time.now.year, self.vendedor_id]).collect(&:promociones).flatten.select{|p| p.is_a? CumpleanosPromocion}.empty?
       self.promociones << CumpleanosPromocion.first
     end
     if self.vendedor and (self.vendedor.compras.size == 0)
