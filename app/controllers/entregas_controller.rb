@@ -35,7 +35,7 @@ class EntregasController < ApplicationController
 
     if @entrega.save
       if request.env['REQUEST_PATH'] == entregas_path
-        flash[:notice] = "La venta se registro exitosamente."
+        flash[:notice] = "Ultima venta registrada: El vendedor #{@entrega.vendedor.credencial} llevo #{@entrega.cantidad} revistas, pago $#{@entrega.pago}"
         redirect_to distribucion_path
       else
         redirect_to vendedor_entregas_url(@vendedor)

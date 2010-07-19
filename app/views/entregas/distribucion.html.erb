@@ -6,6 +6,7 @@
   <%- end %>
   <%- if flash[:notice] %>
     <div class="notice"><%= flash[:notice] %></div>
+    <br />
   <%- end %>
   <%= hidden_field_tag(:costo) %>
   Edicion: <%= f.select :revista_id, coleccion_revistas %><br />

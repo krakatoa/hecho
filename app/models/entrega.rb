@@ -4,6 +4,7 @@ class Entrega < ActiveRecord::Base
   has_and_belongs_to_many :promociones, :uniq => true
 
   validates_presence_of :vendedor_id, :cantidad
+  validate :validar_cantidad, :validar_stock
 
   def initialize(attributes = {})
     super
@@ -79,9 +80,16 @@ class Entrega < ActiveRecord::Base
   #  write_attribute("cantidad_gratis", cantidad)
   #end
 
-  def validate
+  private
+  def validar_stock
     if (self.revista && self.revista.stock < self.cantidad)
       self.errors.add(:stock, "insuficiente")
+    end
+  end
+
+  def validar_cantidad
+    unless (self.cantidad > 0)
+      self.errors.add(:cantidad, "insuficiente")
     end
   end
 end
